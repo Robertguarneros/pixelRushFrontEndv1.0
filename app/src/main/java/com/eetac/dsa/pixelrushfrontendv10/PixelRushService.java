@@ -18,7 +18,7 @@ public interface PixelRushService {
     @POST("login")
     Call<Void> login(@Body LoginCredentials credentials);
     @GET("getObjectListFromStore")
-    Call<StoreObject> objectsList ();
+    Call<List<StoreObject>> getAllObjectsFromStore();
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())

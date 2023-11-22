@@ -1,6 +1,7 @@
 package com.eetac.dsa.pixelrushfrontendv10;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -33,14 +34,10 @@ public class MainActivity extends AppCompatActivity {
     TextView lineName;
     TextView lineID;
     TextView lineDescription;
-    TextView linePrice;
-    TextView squarePhoto;
 
     Button buttonRegister;
     Button buttonLogin;
     boolean logInCorrectly = false;
-    RecyclerView recyclerView;
-    MyAdapter adapter;
 
 
     @Override
@@ -62,17 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
         buttonRegister= findViewById(R.id.registerBtn);
         buttonLogin = findViewById(R.id.loginBtn);
-
-        lineName = findViewById(R.id.firstLineName);
-        lineDescription = findViewById(R.id.secondLineDescription);
-        linePrice = findViewById(R.id.thirdLinePrice);
-        lineID = findViewById(R.id.fourthLineID);
-        squarePhoto = findViewById(R.id.squarePhoro);
-
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyAdapter();
-        recyclerView.setAdapter(adapter);
     }
 
     public void login(View view) {
@@ -81,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         String password = editTextPassword.getText().toString();
 
         LoginCredentials loginCredentials = new LoginCredentials(username,password);
-
 
         Call<Void> callLogin = pixelRushService.login(loginCredentials);
 
@@ -97,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Error"+response.message(),Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 System.out.println("Error: "+t.getMessage());
@@ -105,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void register(View view){
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
         String name = editTextName.getText().toString();
@@ -131,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Error"+response.message(),Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.i("iteracion1","Error: "+t.getMessage(),t);
@@ -140,31 +124,59 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void ObjectListButton (View view){
-        if (logInCorrectly==true){
-        setContentView(R.layout.row_layout);
+    public void getAllObjectsFromStore (View view) {
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
-            lineName = findViewById(R.id.firstLineName);
+
+        if (logInCorrectly == true) {
+            setContentView(R.layout.recycle_view);
+            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+           // setContentView(R.layout.row_layout);
+
+           /* lineName = findViewById(R.id.firstLineName);
             lineDescription = findViewById(R.id.secondLineDescription);
-            linePrice = findViewById(R.id.thirdLinePrice);
-            lineID = findViewById(R.id.fourthLineID);
-            squarePhoto = findViewById(R.id.squarePhoro);
+            lineID = findViewById(R.id.fourthLineID);*/
 
-            String name = lineName.getText().toString();
-            String description = lineDescription.getText().toString();
-            String priceS = linePrice.getText().toString();
-            String id = lineID.getText().toString();
-            String photo = squarePhoto.getText().toString();
-            int price = Integer.parseInt(priceS);
+            Call<List<StoreObject>> callGetAllStoreObjects = pixelRushService.getAllObjectsFromStore();
+            callGetAllStoreObjects.enqueue(new Callback<List<StoreObject>>() {
+                @Override
+                public void onResponse(Call<List<StoreObject>> call, Response<List<StoreObject>> response) {
+                    if (response.isSuccessful()) {
+                        List<StoreObject> objects = response.body();
 
-            Call<StoreObject> callGetStoreObjects = new StoreObject();
+                        // Crear y establecer el adaptador
+                        MyAdapter adapter = new MyAdapter(objects);
+                        recyclerView.setAdapter(adapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-            callGetStoreObjects.
+                        /*for (StoreObject object : objects) {
+                            String name = object.articleName;
+                            String id = object.ID;
+                            String description = object.description;
+
+                            lineName.setText(name);
+                            lineID.setText(id);
+                            lineDescription.setText(description);*/
+                            Log.i("iteracion1_ObjectList", "Object list successful");
+                            Toast.makeText(MainActivity.this, "Object list successful", Toast.LENGTH_SHORT).show();
+                        }
+                    else {
+                        Log.i("iteracion1_ObjectList", "Error: " + response.code() + " " + response.message());
+                        Toast.makeText(MainActivity.this, "Error" + response.message(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<StoreObject>> call, Throwable t) {
+                    Log.i("iteracion1_ObjectList", "Error: " + t.getMessage(), t);
+                    Toast.makeText(MainActivity.this, "Error" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         else{
-            Toast.makeText(MainActivity.this,"Please log in first",Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(MainActivity.this, "Log in first please", Toast.LENGTH_SHORT).show();
         }
     }
-
+    public void ClickExitListObjects (View view){
+        setContentView(R.layout.activity_main);
+    }
 }

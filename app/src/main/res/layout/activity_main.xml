@@ -34,7 +34,7 @@
         android:id="@+id/ObjectListBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="ObjectListButton"
+        android:onClick="getAllObjectsFromStore"
         android:text="Objects list"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
