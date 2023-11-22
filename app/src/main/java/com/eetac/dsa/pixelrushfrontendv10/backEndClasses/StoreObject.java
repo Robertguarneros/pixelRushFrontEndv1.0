@@ -1,18 +1,21 @@
 package com.eetac.dsa.pixelrushfrontendv10.backEndClasses;
 
 public class StoreObject {
-    public String ID;
+    public String objectID;
     public String articleName;
     public int price;
     public String description;
-    public String articlePhoto;
+    public String articlePhoto; //same as attribute photo from User class
 
-    public StoreObject(String id, String name, int price, String articleDescription, String photo){
-        this.ID = id;
-        this.articleName = name;
-        this.price = price;
-        this.description = articleDescription;
-        this.articlePhoto = photo;
+    //empty constructor
+    public StoreObject() {
     }
 
+    //fully constructor
+    public StoreObject(String objectID, String articleName, int price, String description) {
+        this.objectID = objectID;
+        this.articleName = articleName;
+        this.price = price;
+        this.description = description;
+    }
 }

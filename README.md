@@ -7,7 +7,7 @@ https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-no
 
 V1.2.1 - Login, Register, and Store.
 - Login and register functions work correctly.
-- Object list includes only the name, description, and ID of the object (ID doesn't work correctly).
+- Object list includes only the name, description, price and ID of the object.
 
 
 

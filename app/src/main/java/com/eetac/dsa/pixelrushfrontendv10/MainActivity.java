@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
         editTextName = findViewById(R.id.editTextName);
 
-        editTextMail = findViewById(R.id.editTextmail);
+        editTextMail = findViewById(R.id.editTextMail);
         editTextAge = findViewById(R.id.editTextAge);
-        editTextSurname = findViewById(R.id.editTextsurname);
+        editTextSurname = findViewById(R.id.editTextSurname);
 
 
         buttonRegister= findViewById(R.id.registerBtn);
@@ -97,28 +97,28 @@ public class MainActivity extends AppCompatActivity {
         String mail = editTextMail.getText().toString();
         String username = editTextUsername.getText().toString();
         String password = editTextPassword.getText().toString();
-        String age = editTextAge.getText().toString();
-        int ageInt = Integer.parseInt(age);
+        String getAge = editTextAge.getText().toString();
+        int ageInt = Integer.parseInt(getAge);
 
         RegisterCredentials registerCredentials = new RegisterCredentials(username,password,name,surname,mail,ageInt);
 
-        Call<Void> callsingin = pixelRushService.register(registerCredentials);
+        Call<Void> callSingIn = pixelRushService.register(registerCredentials);
 
-        callsingin.enqueue(new Callback<Void>() {
+        callSingIn.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Log.i("iteracion1","User register successful");
+                    Log.i("First Version","User register successful");
                     Toast.makeText(MainActivity.this,"User register successful",Toast.LENGTH_SHORT).show();
                     //showPrincipalUserPage();
                 } else {
-                    Log.i("iteracion1","Error: " + response.code() + " " + response.message());
+                    Log.i("First Version","Error: " + response.code() + " " + response.message());
                     Toast.makeText(MainActivity.this,"Error"+response.message(),Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.i("iteracion1","Error: "+t.getMessage(),t);
+                Log.i("First Version","Error: "+t.getMessage(),t);
                 Toast.makeText(MainActivity.this,"Error"+t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
@@ -130,11 +130,6 @@ public class MainActivity extends AppCompatActivity {
         if (logInCorrectly == true) {
             setContentView(R.layout.recycle_view);
             RecyclerView recyclerView = findViewById(R.id.recyclerView);
-           // setContentView(R.layout.row_layout);
-
-           /* lineName = findViewById(R.id.firstLineName);
-            lineDescription = findViewById(R.id.secondLineDescription);
-            lineID = findViewById(R.id.fourthLineID);*/
 
             Call<List<StoreObject>> callGetAllStoreObjects = pixelRushService.getAllObjectsFromStore();
             callGetAllStoreObjects.enqueue(new Callback<List<StoreObject>>() {
@@ -142,32 +137,26 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<List<StoreObject>> call, Response<List<StoreObject>> response) {
                     if (response.isSuccessful()) {
                         List<StoreObject> objects = response.body();
+                        System.out.println("--------------------------------------------------------------\n"+objects.get(0).objectID+"\n"+objects.get(0).articleName+"\n"+objects.get(0).description+"\n"+objects.get(0).price);
 
                         // Crear y establecer el adaptador
                         MyAdapter adapter = new MyAdapter(objects);
                         recyclerView.setAdapter(adapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-                        /*for (StoreObject object : objects) {
-                            String name = object.articleName;
-                            String id = object.ID;
-                            String description = object.description;
 
-                            lineName.setText(name);
-                            lineID.setText(id);
-                            lineDescription.setText(description);*/
-                            Log.i("iteracion1_ObjectList", "Object list successful");
+                            Log.i("FirstVersion_ObjectList", "Object list successful");
                             Toast.makeText(MainActivity.this, "Object list successful", Toast.LENGTH_SHORT).show();
                         }
                     else {
-                        Log.i("iteracion1_ObjectList", "Error: " + response.code() + " " + response.message());
+                        Log.i("FirstVersion_ObjectList", "Error: " + response.code() + " " + response.message());
                         Toast.makeText(MainActivity.this, "Error" + response.message(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<List<StoreObject>> call, Throwable t) {
-                    Log.i("iteracion1_ObjectList", "Error: " + t.getMessage(), t);
+                    Log.i("FirstVersion_ObjectList", "Error: " + t.getMessage(), t);
                     Toast.makeText(MainActivity.this, "Error" + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

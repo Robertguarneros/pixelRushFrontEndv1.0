@@ -29,8 +29,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         StoreObject object = storeObjects.get(position);
 
         holder.lineName.setText(object.articleName);
-        holder.lineID.setText(object.ID);
+        holder.lineID.setText("ID: "+object.objectID);
         holder.lineDescription.setText(object.description);
+        holder.linePrice.setText("$"+object.price);
     }
 
     @Override
@@ -43,12 +44,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         TextView lineName;
         TextView lineDescription;
         TextView lineID;
+        TextView linePrice;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            lineName = itemView.findViewById(R.id.firstLineName);
-            lineDescription = itemView.findViewById(R.id.secondLineDescription);
-            lineID = itemView.findViewById(R.id.fourthLineID);
+            lineName = itemView.findViewById(R.id.textViewArticleName);
+            lineDescription = itemView.findViewById(R.id.textViewDescription);
+            lineID = itemView.findViewById(R.id.textViewID);
+            linePrice = itemView.findViewById(R.id.textViewPrice);
         }
     }
 }
