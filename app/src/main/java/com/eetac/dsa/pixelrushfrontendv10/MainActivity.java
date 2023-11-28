@@ -1,5 +1,6 @@
 package com.eetac.dsa.pixelrushfrontendv10;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,10 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     //we have to search for the text boxes and buttons
+
+    Button logIn;
+    Button signIn;
+
     EditText editTextUsername;
     EditText editTextPassword;
     EditText editTextName;
@@ -40,12 +45,29 @@ public class MainActivity extends AppCompatActivity {
     boolean logInCorrectly = false;
 
 
+
+    View dialogView;
+
+    private AlertDialog alertDialog;
+
+
+    boolean popUpType;
+
+    AlertDialog.Builder builder;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_page);
 
-        //we initialize the text views and buttons here
+
+        logIn = findViewById(R.id.logIn);
+        signIn = findViewById(R.id.signIn);
+
+
+        /*we initialize the text views and buttons here
         editTextUsername = findViewById(R.id.editTextUsername);
 
         editTextPassword = findViewById(R.id.editTextPassword);
@@ -58,11 +80,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         buttonRegister= findViewById(R.id.registerBtn);
-        buttonLogin = findViewById(R.id.loginBtn);
+        buttonLogin = findViewById(R.id.loginBtn);*/
     }
 
+
+    public void logingPageOpen(View view){
+       // builder = new AlertDialog.Builder(this);
+        //dialogView = getLayoutInflater().inflate(R.layout.custom_log_in_dialog, null);
+        //builder.setView(dialogView);
+        setContentView(R.layout.custom_log_in_dialog);
+        editTextUsername = findViewById(R.id.editTextUsername);
+        editTextPassword = findViewById(R.id.editTextPassword);
+
+        //alertDialog = builder.create();
+        //alertDialog.show();
+    }
     public void login(View view) {
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
+
         String username = editTextUsername.getText().toString();
         String password = editTextPassword.getText().toString();
 
@@ -77,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("User login successful");
                     Toast.makeText(MainActivity.this,"User login successful",Toast.LENGTH_SHORT).show();
                     logInCorrectly = true;
+                    setContentView(R.layout.main_user_page);
+                    //alertDialog.dismiss();
                 } else {
                     System.out.println("Error: " + response.code() + " " + response.message());
                     Toast.makeText(MainActivity.this,"Error"+response.message(),Toast.LENGTH_SHORT).show();
@@ -90,8 +127,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void registerPageOpen(View view){
+        //builder = new AlertDialog.Builder(this);
+       // dialogView = getLayoutInflater().inflate(R.layout.custom_sign_up_dialog, null);
+        //builder.setView(dialogView);
+        setContentView(R.layout.custom_sign_up_dialog);
+        editTextUsername = findViewById(R.id.editTextUsername);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        editTextName = findViewById(R.id.editTextName);
+        editTextSurname = findViewById(R.id.editTextSurname);
+        editTextMail = findViewById(R.id.editTextMail);
+        editTextAge = findViewById(R.id.editTextAge);
+
+        //alertDialog = builder.create();
+        //alertDialog.show();
+    }
     public void register(View view){
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
+
         String name = editTextName.getText().toString();
         String surname = editTextSurname.getText().toString();
         String mail = editTextMail.getText().toString();
@@ -110,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Log.i("First Version","User register successful");
                     Toast.makeText(MainActivity.this,"User register successful",Toast.LENGTH_SHORT).show();
+                    setContentView(R.layout.custom_log_in_dialog);
                     //showPrincipalUserPage();
                 } else {
                     Log.i("First Version","Error: " + response.code() + " " + response.message());
@@ -165,7 +219,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Log in first please", Toast.LENGTH_SHORT).show();
         }
     }
-    public void ClickExitListObjects (View view){
-        setContentView(R.layout.activity_main);
+    public void UserProfile (View view){
+
+    }
+    public void ClickExit (View view){
+
+        setContentView(R.layout.main_page);
     }
 }
