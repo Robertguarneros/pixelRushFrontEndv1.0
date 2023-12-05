@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,8 +19,6 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     EditText editTextUsername;
     EditText editTextPassword;
-
-    boolean logInCorrectly;
     String usernameLogin;
 
 
@@ -31,8 +28,16 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.custom_log_in_dialog);
 
         // Initialize the text views and buttons here
+        // Initialize the text views and buttons here
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
+
+        // Pre-fill the EditText fields with stored username and password
+        String storedUsername = SharedPreferencesUtil.getStoredUsername(this);
+        String storedPassword = SharedPreferencesUtil.getStoredPassword(this);
+
+        editTextUsername.setText(storedUsername);
+        editTextPassword.setText(storedPassword);
     }
 
     public void login(View view) {
@@ -73,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    public void cancelLoginUp(View view){
+    public void cancelLogin(View view){
         finish();
     }
 }

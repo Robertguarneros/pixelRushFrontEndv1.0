@@ -25,7 +25,7 @@ public interface PixelRushService {
     @GET("{username}")
     Call<User> getUser(@Path("username") String username);
     @PUT("addItemToUser/{username}/{objectID}")
-    static Call<Void> addItemToUser(@Path("username") String username, @Path("objectID") String objectID);
+    Call<Void> addItemToUser(@Path("username") String username, @Path("objectID") String objectID);
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())

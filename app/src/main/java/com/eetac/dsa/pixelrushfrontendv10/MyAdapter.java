@@ -1,5 +1,6 @@
 package com.eetac.dsa.pixelrushfrontendv10;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
@@ -19,10 +21,12 @@ import retrofit2.Response;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<StoreObject> storeObjects;
+    private Context context;
 
     // Constructor para recibir la lista de objetos
-    public MyAdapter(List<StoreObject> storeObjects) {
+    public MyAdapter(List<StoreObject> storeObjects, Context context) {
         this.storeObjects = storeObjects;
+        this.context = context;
     }
 
     @Override
@@ -45,30 +49,31 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 int position = holder.getAdapterPosition();
                 Log.i("POSICION DEL ADAPTER", "----------------------------"+position);
 
-                //Add item to this user
-                //Necesitamos recuper el username a partir del sharepreferences
+                // Retrieve the username from SharedPreferences
+                String storedUsername = SharedPreferencesUtil.getStoredUsername(context);
+                PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
 
-                //MIRAR de arreglarlo
-                String storedUsername = getStoredUsername();
-
-                Call<Void> callAddItemToUser = PixelRushService.addItemToUser(username,storeObjects.get(position).getObjectID());
+                Call<Void> callAddItemToUser = pixelRushService.addItemToUser(storedUsername,storeObjects.get(position).getObjectID());
                 callAddItemToUser.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
-                            System.out.println("Item added successfully");
+                            System.out.println("Purchase Successful");
+                            Toast.makeText(context, "Purchase Successful", Toast.LENGTH_SHORT).show();
+
+
                         } else {
                             System.out.println("Error: " + response.code() + " " + response.message());
+                            Toast.makeText(context,"Error"+response.message(),Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
                         System.out.println("Error: "+t.getMessage());
+                        Toast.makeText(context,"Error"+t.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
             }
         });
     }

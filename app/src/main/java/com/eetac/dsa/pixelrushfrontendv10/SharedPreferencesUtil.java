@@ -11,5 +11,9 @@ public class SharedPreferencesUtil {
         return sharedPreferences.getString("username", "");
     }
 
+    public static String getStoredPassword(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("password", "");
+    }
     // You can add more utility methods here if needed
 }

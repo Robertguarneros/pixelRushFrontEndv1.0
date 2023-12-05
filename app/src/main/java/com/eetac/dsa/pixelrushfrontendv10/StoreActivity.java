@@ -44,7 +44,7 @@ public class StoreActivity extends AppCompatActivity {
                         List<StoreObject> objects = response.body();
 
                         // Crear y establecer el adaptador
-                        MyAdapter adapter = new MyAdapter(objects);
+                        MyAdapter adapter = new MyAdapter(objects,StoreActivity.this);
                         recyclerView.setAdapter(adapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(StoreActivity.this));
 
@@ -64,11 +64,6 @@ public class StoreActivity extends AppCompatActivity {
                     Toast.makeText(StoreActivity.this, "Error" + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-    }
-
-
-    public void buyObject(){
-
     }
 
     public void exitStore(View view){
