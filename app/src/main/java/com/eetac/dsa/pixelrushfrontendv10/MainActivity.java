@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.LoginCredentials;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.RegisterCredentials;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
+import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.User;
 
 import java.util.List;
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editTextSurname;
     EditText editTextMail;
     EditText editTextAge;
+
+    String usernameLogin;
     TextView lineName;
     TextView lineID;
     TextView lineDescription;
@@ -112,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("User login successful");
                     Toast.makeText(MainActivity.this,"User login successful",Toast.LENGTH_SHORT).show();
                     logInCorrectly = true;
+                    usernameLogin=username;
                     setContentView(R.layout.main_user_page);
                     //alertDialog.dismiss();
                 } else {
@@ -219,8 +223,57 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Log in first please", Toast.LENGTH_SHORT).show();
         }
     }
-    public void UserProfile (View view){
+    public void UserProfile (View view, String username){
+        PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
+        if (logInCorrectly == true) {
+            setContentView(R.layout.user_profile);
+            TextView nameProfile = findViewById(R.id.editTextNameProfile);
+            TextView surnameProfile = findViewById(R.id.editTextSurnameProfile);
+            TextView mailProfile = findViewById(R.id.editTextMailProfile);
+            TextView usernameProfile = findViewById(R.id.editTextUsernameProfile);
+            TextView ageProfile = findViewById(R.id.editTextAgeProfile);
 
+           /* String nameP = nameProfile.toString();
+            String surnameP = surnameProfile.toString();
+            String mailP = mailProfile.toString();
+            String usernameP = usernameProfile.toString();
+            String agePS = ageProfile.toString();
+            int ageP = Integer.parseInt(agePS);
+            String passwordP = null;
+
+            User userProfile = new User(usernameP,passwordP,mailP,nameP,surnameP,ageP);*/
+            Call<User> callGetUserProfile = pixelRushService.getUser(usernameLogin);
+            callGetUserProfile.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful()) {
+                        User userProfile = response.body();
+
+                        // Actualiza los EditText con la información del perfil
+                        nameProfile.setText(userProfile.getName());
+                        surnameProfile.setText(userProfile.getSurname());
+                        mailProfile.setText(userProfile.getMail());
+                        usernameProfile.setText(userProfile.getUsername());
+                        ageProfile.setText(String.valueOf(userProfile.getAge()));
+
+                        Log.i("FirstVersion_ObjectList", "Object list successful");
+                        Toast.makeText(MainActivity.this, "Object list successful", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.i("FirstVersion_ObjectList", "Error: " + response.code() + " " + response.message());
+                        Toast.makeText(MainActivity.this, "Error" + response.message(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.i("FirstVersion_ObjectList", "Error: " + t.getMessage(), t);
+                    Toast.makeText(MainActivity.this, "Error" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else{
+            Toast.makeText(MainActivity.this, "Log in first please", Toast.LENGTH_SHORT).show();
+        }
     }
     public void ClickExit (View view){
 

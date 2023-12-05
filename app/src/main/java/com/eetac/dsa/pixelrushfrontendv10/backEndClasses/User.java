@@ -32,4 +32,40 @@ public class User {
         this.ownedObjects = new ArrayList<>();//create empty list of owned objects
         this.pointsEarned = 0;//User starts with 0 points earned
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getPointsEarned() {
+        return pointsEarned;
+    }
 }
