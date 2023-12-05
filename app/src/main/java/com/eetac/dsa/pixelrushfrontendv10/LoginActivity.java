@@ -34,10 +34,19 @@ public class LoginActivity extends AppCompatActivity {
 
         // Pre-fill the EditText fields with stored username and password
         String storedUsername = SharedPreferencesUtil.getStoredUsername(this);
-        String storedPassword = SharedPreferencesUtil.getStoredPassword(this);
+        if (!storedUsername.isEmpty()) {
+            // User is already logged in, navigate to MainUserPageActivity
+            Intent intent = new Intent(LoginActivity.this, MainUserPageActivity.class);
+            intent.putExtra("username", storedUsername);
+            startActivity(intent);
+            finish(); // Finish the LoginActivity so the user cannot go back to it
+        } else {
+            // User is not logged in, proceed with the login process
+            String storedPassword = SharedPreferencesUtil.getStoredPassword(this);
+            editTextUsername.setText(storedUsername);
+            editTextPassword.setText(storedPassword);
+        }
 
-        editTextUsername.setText(storedUsername);
-        editTextPassword.setText(storedPassword);
     }
 
     public void login(View view) {

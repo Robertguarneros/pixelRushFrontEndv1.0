@@ -40,7 +40,7 @@
         android:layout_height="50dp"
         android:backgroundTint="@color/Nami_Tangerine"
         android:onClick="registerPageOpen"
-        android:text="Sing In"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

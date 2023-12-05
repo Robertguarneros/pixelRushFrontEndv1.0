@@ -37,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
         logIn = findViewById(R.id.logIn);
         signIn = findViewById(R.id.signIn);
+        String storedUsername = SharedPreferencesUtil.getStoredUsername(this);
+        if (!storedUsername.isEmpty()) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
 
