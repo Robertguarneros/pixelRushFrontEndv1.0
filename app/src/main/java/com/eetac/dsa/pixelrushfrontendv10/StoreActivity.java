@@ -65,6 +65,12 @@ public class StoreActivity extends AppCompatActivity {
                 }
             });
     }
+
+
+    public void buyObject(){
+
+    }
+
     public void exitStore(View view){
         finish();
     }

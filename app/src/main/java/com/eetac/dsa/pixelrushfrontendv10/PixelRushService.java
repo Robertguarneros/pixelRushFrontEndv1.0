@@ -12,6 +12,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.PUT;
 
 public interface PixelRushService {
     String URL = "http://10.0.2.2:8080/dsaApp/pixelRush/";
@@ -23,10 +24,10 @@ public interface PixelRushService {
     Call<List<StoreObject>> getAllObjectsFromStore();
     @GET("{username}")
     Call<User> getUser(@Path("username") String username);
-
+    @PUT("addItemToUser/{username}/{objectID}")
+    Call<Void> addItemToUser(@Path("username")String username,@Path("objectID")String objectID);
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-
 }

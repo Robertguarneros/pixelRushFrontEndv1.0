@@ -18,4 +18,12 @@ public class StoreObject {
         this.price = price;
         this.description = description;
     }
+
+    public String getObjectID() {
+        return objectID;
+    }
+
+    public void setObjectID(String objectID) {
+        this.objectID = objectID;
+    }
 }
