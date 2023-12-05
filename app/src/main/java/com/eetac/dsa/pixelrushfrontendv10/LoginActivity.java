@@ -49,9 +49,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     System.out.println("User login successful");
                     Toast.makeText(LoginActivity.this,"User login successful",Toast.LENGTH_SHORT).show();
-                    logInCorrectly = true;
                     usernameLogin=username;
                     Intent intent = new Intent(LoginActivity.this, MainUserPageActivity.class);
+                    String message = usernameLogin;
+                    intent.putExtra("username", message);
                     startActivity(intent);
                 } else {
                     System.out.println("Error: " + response.code() + " " + response.message());
@@ -65,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    public void cancelSignUp(View view){
+    public void cancelLoginUp(View view){
         finish();
     }
 }
