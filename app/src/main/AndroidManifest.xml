@@ -25,6 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".MainUserPageActivity">
+        </activity>
+        <activity android:name=".RegisterActivity">
+        </activity>
     </application>
     <!--We use the following permissions in order to  fix socket error-->
     <uses-permission android:name="android.permission.INTERNET" />

@@ -11,11 +11,11 @@
 
 
     <Button
-        android:id="@+id/botoncerrar"
+        android:id="@+id/buttonClose"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/ic_close"
-        android:onClick="ClickExit"
+        android:onClick="cancelSignUp"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.958"
@@ -81,13 +81,13 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/buttonLoging"
+        android:id="@+id/buttonLogin"
 
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:onClick="login"
         android:backgroundTint="@color/Nami_dark"
-        android:text="loging"
+        android:onClick="login"
+        android:text="login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
