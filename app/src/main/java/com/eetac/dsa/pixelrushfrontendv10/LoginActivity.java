@@ -1,6 +1,8 @@
 package com.eetac.dsa.pixelrushfrontendv10;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +52,11 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println("User login successful");
                     Toast.makeText(LoginActivity.this,"User login successful",Toast.LENGTH_SHORT).show();
                     usernameLogin=username;
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                    sharedPreferences.edit().putString("username", username).apply();
+                    sharedPreferences.edit().putString("password", password).apply();
+
                     Intent intent = new Intent(LoginActivity.this, MainUserPageActivity.class);
                     String message = usernameLogin;
                     intent.putExtra("username", message);
