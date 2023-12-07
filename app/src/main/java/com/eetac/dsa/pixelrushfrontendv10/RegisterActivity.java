@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editTextMail;
     EditText editTextAge;
 
-    boolean logInCorrectly;
-    String usernameLogin;
-
-
+    ProgressBar progressBarSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +36,12 @@ public class RegisterActivity extends AppCompatActivity {
         editTextSurname = findViewById(R.id.editTextSurname);
         editTextMail = findViewById(R.id.editTextMail);
         editTextAge = findViewById(R.id.editTextAge);
+        progressBarSignUp = findViewById(R.id.progressBarProfile);
     }
 
     public void register(View view){
+        progressBarSignUp.setVisibility(View.VISIBLE); // Show progress bar
+
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
 
         String name = editTextName.getText().toString();
@@ -57,6 +58,8 @@ public class RegisterActivity extends AppCompatActivity {
         callSingIn.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                progressBarSignUp.setVisibility(View.GONE); // Hide progress bar
+
                 if (response.isSuccessful()) {
                     Log.i("First Version","User register successful");
                     Toast.makeText(RegisterActivity.this,"User register successful",Toast.LENGTH_SHORT).show();
@@ -69,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                progressBarSignUp.setVisibility(View.GONE);
                 Log.i("First Version","Error: "+t.getMessage(),t);
                 Toast.makeText(RegisterActivity.this,"Error"+t.getMessage(),Toast.LENGTH_SHORT).show();
             }

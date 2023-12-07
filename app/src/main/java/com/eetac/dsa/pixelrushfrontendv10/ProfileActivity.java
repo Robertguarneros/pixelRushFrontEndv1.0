@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
     String username;
+    ProgressBar progressBarProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +27,12 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         UserProfile(username);
-
+        progressBarProfile = findViewById(R.id.progressBarProfile);
     }
 
     public void UserProfile (String username){
+        progressBarProfile.setVisibility(View.VISIBLE);
+
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
 
             setContentView(R.layout.user_profile);
@@ -42,6 +46,8 @@ public class ProfileActivity extends AppCompatActivity {
             callGetUserProfile.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
+                    progressBarProfile.setVisibility(View.GONE);
+
                     if (response.isSuccessful()) {
                         User userProfile = response.body();
 
@@ -62,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
+                    progressBarProfile.setVisibility(View.GONE);
                     Log.i("FirstVersion_ObjectList", "Error: " + t.getMessage(), t);
                     Toast.makeText(ProfileActivity.this, "Error" + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }

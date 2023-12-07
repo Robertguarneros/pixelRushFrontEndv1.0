@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextUsername;
     EditText editTextPassword;
     String usernameLogin;
+    ProgressBar progressBarLogin;
 
 
     @Override
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize the text views and buttons here
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
+        progressBarLogin = findViewById(R.id.progressBarProfile);
 
         // Pre-fill the EditText fields with stored username and password
         String storedUsername = SharedPreferencesUtil.getStoredUsername(this);
@@ -50,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
+        progressBarLogin.setVisibility(View.VISIBLE); // Show progress bar
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
 
         String username = editTextUsername.getText().toString();
@@ -62,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         callLogin.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                progressBarLogin.setVisibility(View.GONE); // Hide progress bar
                 if (response.isSuccessful()) {
                     System.out.println("User login successful");
                     Toast.makeText(LoginActivity.this,"User login successful",Toast.LENGTH_SHORT).show();
@@ -82,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                progressBarLogin.setVisibility(View.GONE); // Hide progress bar
                 System.out.println("Error: "+t.getMessage());
                 Toast.makeText(LoginActivity.this,"Error"+t.getMessage(),Toast.LENGTH_SHORT).show();
             }
