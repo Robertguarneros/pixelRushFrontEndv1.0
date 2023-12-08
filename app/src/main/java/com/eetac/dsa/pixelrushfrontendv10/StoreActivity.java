@@ -21,7 +21,6 @@ import retrofit2.Response;
 
 public class StoreActivity extends AppCompatActivity {
     String username;
-    ProgressBar progressBarStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,21 +29,19 @@ public class StoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         getAllObjectsFromStore();
-        progressBarStore = findViewById(R.id.progressBarProfile);
-
     }
 
     public void getAllObjectsFromStore () {
-        progressBarStore.setVisibility(View.VISIBLE);
+
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
             setContentView(R.layout.recycle_view);
+
             RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
             Call<List<StoreObject>> callGetAllStoreObjects = pixelRushService.getAllObjectsFromStore();
             callGetAllStoreObjects.enqueue(new Callback<List<StoreObject>>() {
                 @Override
                 public void onResponse(Call<List<StoreObject>> call, Response<List<StoreObject>> response) {
-                    progressBarStore.setVisibility(View.GONE);
                     if (response.isSuccessful()) {
                         List<StoreObject> objects = response.body();
 
@@ -54,8 +51,8 @@ public class StoreActivity extends AppCompatActivity {
                         recyclerView.setLayoutManager(new LinearLayoutManager(StoreActivity.this));
 
 
-                        Log.i("FirstVersion_ObjectList", "Object list successful");
-                        Toast.makeText(StoreActivity.this, "Object list successful", Toast.LENGTH_SHORT).show();
+                        Log.i("FirstVersion_ObjectList", "Showing Store");
+                        Toast.makeText(StoreActivity.this, "Showing Store", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         Log.i("FirstVersion_ObjectList", "Error: " + response.code() + " " + response.message());
@@ -65,8 +62,6 @@ public class StoreActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<List<StoreObject>> call, Throwable t) {
-                    progressBarStore.setVisibility(View.GONE);
-
                     Log.i("FirstVersion_ObjectList", "Error: " + t.getMessage(), t);
                     Toast.makeText(StoreActivity.this, "Error" + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }

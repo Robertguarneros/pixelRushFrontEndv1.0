@@ -22,6 +22,7 @@ import retrofit2.Response;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<StoreObject> storeObjects;
     private Context context;
+    ProgressBar progressBarBuy;
 
     // Constructor para recibir la lista de objetos
     public MyAdapter(List<StoreObject> storeObjects, Context context) {
@@ -46,6 +47,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.buttonBuy.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBarBuy.setVisibility(View.VISIBLE);
+
                 int position = holder.getAdapterPosition();
                 Log.i("POSICION DEL ADAPTER", "----------------------------"+position);
 
@@ -57,6 +60,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 callAddItemToUser.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
+                        progressBarBuy.setVisibility(View.GONE);
+
                         if (response.isSuccessful()) {
                             System.out.println("Purchase Successful");
                             Toast.makeText(context, "Purchase Successful", Toast.LENGTH_SHORT).show();
@@ -70,6 +75,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
+                        progressBarBuy.setVisibility(View.GONE);
+
                         System.out.println("Error: "+t.getMessage());
                         Toast.makeText(context,"Error"+t.getMessage(),Toast.LENGTH_SHORT).show();
                     }
@@ -98,6 +105,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             lineID = itemView.findViewById(R.id.textViewID);
             linePrice = itemView.findViewById(R.id.textViewPrice);
             buttonBuy = itemView.findViewById(R.id.buttonBuy);
+            progressBarBuy = itemView.findViewById(R.id.progressBarBuy);
         }
     }
 }

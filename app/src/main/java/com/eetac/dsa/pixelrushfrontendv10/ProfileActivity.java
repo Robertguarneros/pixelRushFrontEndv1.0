@@ -26,8 +26,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-        UserProfile(username);
         progressBarProfile = findViewById(R.id.progressBarProfile);
+        UserProfile(username);
     }
 
     public void UserProfile (String username){
@@ -35,7 +35,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
 
-            setContentView(R.layout.user_profile);
             TextView nameProfile = findViewById(R.id.editTextNameProfile);
             TextView surnameProfile = findViewById(R.id.editTextSurnameProfile);
             TextView mailProfile = findViewById(R.id.editTextMailProfile);
@@ -58,8 +57,8 @@ public class ProfileActivity extends AppCompatActivity {
                         usernameProfile.setText(userProfile.getUsername());
                         ageProfile.setText(String.valueOf(userProfile.getBirthDate()));
 
-                        Log.i("FirstVersion_ObjectList", "Object list successful");
-                        Toast.makeText(ProfileActivity.this, "Object list successful", Toast.LENGTH_SHORT).show();
+                        Log.i("FirstVersion_ObjectList", "Showing User Profile");
+                        Toast.makeText(ProfileActivity.this, "Showing User Profile", Toast.LENGTH_SHORT).show();
                     } else {
                         Log.i("FirstVersion_ObjectList", "Error: " + response.code() + " " + response.message());
                         Toast.makeText(ProfileActivity.this, "Error" + response.message(), Toast.LENGTH_SHORT).show();

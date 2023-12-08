@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextSurname = findViewById(R.id.editTextSurname);
         editTextMail = findViewById(R.id.editTextMail);
         editTextAge = findViewById(R.id.editTextAge);
-        progressBarSignUp = findViewById(R.id.progressBarProfile);
+        progressBarSignUp = findViewById(R.id.progressBarRegister);
     }
 
     public void register(View view){

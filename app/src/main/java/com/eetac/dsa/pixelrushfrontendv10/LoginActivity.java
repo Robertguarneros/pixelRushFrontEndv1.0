@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize the text views and buttons here
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
-        progressBarLogin = findViewById(R.id.progressBarProfile);
+        progressBarLogin = findViewById(R.id.progressBarLogin);
 
         // Pre-fill the EditText fields with stored username and password
         String storedUsername = SharedPreferencesUtil.getStoredUsername(this);
