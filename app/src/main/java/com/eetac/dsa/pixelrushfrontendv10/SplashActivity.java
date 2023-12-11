@@ -7,6 +7,7 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+//To close the account automatically
 public class SplashActivity extends AppCompatActivity {
     private static final int SPLASH_TIMEOUT = 1000; // Splash screen timeout in milliseconds
 

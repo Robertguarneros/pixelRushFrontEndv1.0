@@ -24,9 +24,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
-    //we have to search for the text boxes and buttons
-
     Button logIn;
     Button signIn;
 
@@ -44,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void loginPageOpen(View view){
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
+
     public void registerPageOpen(View view){
         Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(intent);

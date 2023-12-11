@@ -49,8 +49,6 @@ public class StoreActivity extends AppCompatActivity {
                         MyAdapter adapter = new MyAdapter(objects,StoreActivity.this);
                         recyclerView.setAdapter(adapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(StoreActivity.this));
-
-
                         Log.i("FirstVersion_ObjectList", "Showing Store");
                         Toast.makeText(StoreActivity.this, "Showing Store", Toast.LENGTH_SHORT).show();
                     }
