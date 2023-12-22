@@ -55,5 +55,10 @@ public class MainUserPageActivity extends AppCompatActivity {
         Intent intent = new Intent(MainUserPageActivity.this, MainActivity.class);
         startActivity(intent);
     }
-
+    public void goToAskAQuestion(View view){
+        Intent intent = new Intent(MainUserPageActivity.this, AskAQuestionActivity.class);
+        String message = username;
+        intent.putExtra("username", message);
+        startActivity(intent);
+    }
 }

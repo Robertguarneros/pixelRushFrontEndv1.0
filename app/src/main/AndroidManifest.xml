@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".ProfileActivity">
         </activity>
+        <activity android:name=".AskAQuestionActivity">
+        </activity>
         <activity
             android:name="com.eetac.dsa.pixelrushfrontendv10.SplashActivity"
             android:exported="true">

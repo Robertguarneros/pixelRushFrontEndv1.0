@@ -3,6 +3,7 @@ import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.LoginCredentials;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.RegisterCredentials;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.User;
+import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Question;
 
 import java.util.List;
 import retrofit2.Call;
@@ -15,6 +16,7 @@ import retrofit2.http.Path;
 import retrofit2.http.PUT;
 
 public interface PixelRushService {
+    //String URL = "http://147.83.7.203:80/dsaApp/pixelRush/";
     String URL = "http://10.0.2.2:8080/dsaApp/pixelRush/";
     @POST("registerNewUser")
     Call<Void> register(@Body RegisterCredentials credentials);
@@ -26,6 +28,8 @@ public interface PixelRushService {
     Call<User> getUser(@Path("username") String username);
     @PUT("addItemToUser/{username}/{objectID}")
     Call<Void> addItemToUser(@Path("username") String username, @Path("objectID") String objectID);
+    @POST("question")
+    Call<Void> askAQuestion(@Body Question question);
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())

@@ -62,6 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         progressBarBuy.setVisibility(View.GONE);
 
+
                         if (response.isSuccessful()) {
                             System.out.println("Purchase Successful");
                             Toast.makeText(context, "Purchase Successful", Toast.LENGTH_SHORT).show();
