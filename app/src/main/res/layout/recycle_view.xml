@@ -33,6 +33,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+    <ImageView
+        android:id="@+id/coinImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/coin"
+        app:layout_constraintEnd_toStartOf="@+id/coinNumber"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="11dp" />
 
+    <TextView
+        android:id="@+id/coinNumber"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="11dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

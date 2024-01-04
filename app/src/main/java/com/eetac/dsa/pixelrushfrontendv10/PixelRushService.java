@@ -4,6 +4,7 @@ import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.RegisterCredentials;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.User;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Question;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 import retrofit2.Call;
@@ -30,6 +31,9 @@ public interface PixelRushService {
     Call<Void> addItemToUser(@Path("username") String username, @Path("objectID") String objectID);
     @POST("question")
     Call<Void> askAQuestion(@Body Question question);
+    @GET("getMatchPointsFromActiveMatch/{username}")
+    Call<JsonObject> getMatchPointsFromActiveMatch(@Path("username")String username);
+
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())

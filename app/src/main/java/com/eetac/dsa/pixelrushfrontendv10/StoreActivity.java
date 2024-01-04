@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class StoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         getAllObjectsFromStore();
+        coinNumber();
     }
 
     public void getAllObjectsFromStore () {
@@ -66,6 +69,36 @@ public class StoreActivity extends AppCompatActivity {
             });
     }
 
+    public void coinNumber() {
+        PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
+
+        TextView coinsTextView = findViewById(R.id.coinNumber);
+
+        Call<JsonObject> callGetPointsFromActiveMatch = pixelRushService.getMatchPointsFromActiveMatch(username);
+        callGetPointsFromActiveMatch.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    JsonObject jsonResponse = response.body();
+                    if (jsonResponse != null) {
+                        int points = jsonResponse.get("matchPoints").getAsInt();
+                        String pointsS = Integer.toString(points);
+                        coinsTextView.setText(pointsS);
+                        System.out.println("Current points for user: " + username + " is " + points);
+                    } else {
+                        System.out.println("Response body is null");
+                    }
+                } else {
+                    System.out.println("Error: " + response.code() + " " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println("Error: " + t.getMessage());
+            }
+        });
+    }
     public void exitStore(View view){
         finish();
     }

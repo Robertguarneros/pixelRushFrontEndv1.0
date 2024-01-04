@@ -28,18 +28,50 @@
         android:onClick="goToProfile"
         android:text="User Info"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonStore"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.979"
+        app:layout_constraintVertical_bias="0.386"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonBadge"
+        android:layout_width="319dp"
+        android:layout_height="55dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/Nami_Tangerine"
+        android:onClick="goToBadge"
+        android:text="Badges"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStore"
+        app:layout_constraintVertical_bias="0.035"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonPlay"
+        android:layout_width="319dp"
+        android:layout_height="55dp"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/Nami_Tangerine"
+        android:onClick="goToBadge"
+        android:text="Play"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBadge"
+        app:layout_constraintVertical_bias="0.052"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonStore"
         android:layout_width="319dp"
         android:layout_height="55dp"
-        android:layout_margin="10dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@color/Nami_Tangerine"
         android:onClick="goToStore"
         android:text="Store"
@@ -47,32 +79,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.594"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUserInformation"
+        app:layout_constraintVertical_bias="0.023"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/Nami_dark"
         android:onClick="logout"
         android:text="Logout"
-        android:backgroundTint="@color/Nami_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStore"
-        app:layout_constraintVertical_bias="0.302" />
-
-    <Button
-        android:id="@+id/questionBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/Nami_dark"
-        android:onClick="goToAskAQuestion"
-        android:text="Ask a Question"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogout" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlay"
+        app:layout_constraintVertical_bias="0.382" />
 </androidx.constraintlayout.widget.ConstraintLayout>
