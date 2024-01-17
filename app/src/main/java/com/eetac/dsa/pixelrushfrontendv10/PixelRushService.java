@@ -33,8 +33,6 @@ public interface PixelRushService {
     Call<User> getUser(@Path("username") String username);
     @PUT("addItemToUser/{username}/{objectID}")
     Call<Void> addItemToUser(@Path("username") String username, @Path("objectID") String objectID);
-    @GET("getMatchPointsFromActiveMatch/{username}")
-    Call<JsonObject> getMatchPointsFromActiveMatch(@Path("username")String username);
     //Minimo 2
     @POST("question")
     Call<Void> askAQuestion(@Body Question question);

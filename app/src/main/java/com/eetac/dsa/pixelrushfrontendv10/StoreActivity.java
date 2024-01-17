@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
+import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.User;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -74,28 +75,27 @@ public class StoreActivity extends AppCompatActivity {
 
         TextView coinsTextView = findViewById(R.id.coinNumber);
 
-        Call<JsonObject> callGetPointsFromActiveMatch = pixelRushService.getMatchPointsFromActiveMatch(username);
-        callGetPointsFromActiveMatch.enqueue(new Callback<JsonObject>() {
+        Call<User> callGetUserProfile = pixelRushService.getUser(username);
+        callGetUserProfile.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    JsonObject jsonResponse = response.body();
-                    if (jsonResponse != null) {
-                        int points = jsonResponse.get("matchPoints").getAsInt();
-                        String pointsS = Integer.toString(points);
-                        coinsTextView.setText(pointsS);
-                        System.out.println("Current points for user: " + username + " is " + points);
-                    } else {
-                        System.out.println("Response body is null");
-                    }
+                    User userProfile = response.body();
+
+                    // Actualiza los EditText con la información del perfil
+                    coinsTextView.setText(userProfile.getPointsEarned() + "");
+
+                    Log.i("FirstVersion_ObjectList", "Getting User Profile");
                 } else {
-                    System.out.println("Error: " + response.code() + " " + response.message());
+                    Log.i("FirstVersion_ObjectList", "Error: " + response.code() + " " + response.message());
+                    Toast.makeText(StoreActivity.this, "Error" + response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                System.out.println("Error: " + t.getMessage());
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.i("FirstVersion_ObjectList", "Error: " + t.getMessage(), t);
+                Toast.makeText(StoreActivity.this, "Error" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

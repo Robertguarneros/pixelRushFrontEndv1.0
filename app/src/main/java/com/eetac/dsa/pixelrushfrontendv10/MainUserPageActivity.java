@@ -58,6 +58,13 @@ public class MainUserPageActivity extends AppCompatActivity {
         Intent intent = new Intent(MainUserPageActivity.this, MainActivity.class);
         startActivity(intent);
     }
+    public void play(View view){
+        Intent intent = new Intent(MainUserPageActivity.this, StoreActivity.class);
+        String message = username;
+        intent.putExtra("username", message);
+        startActivity(intent);
+    }
+
     //Minimo 2
     public void goToListBadges(View view){
         Intent intent = new Intent(MainUserPageActivity.this, BadgeActivity.class);
