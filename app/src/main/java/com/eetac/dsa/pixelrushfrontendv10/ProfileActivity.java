@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.User;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
             TextView mailProfile = findViewById(R.id.editTextMailProfile);
             TextView usernameProfile = findViewById(R.id.editTextUsernameProfile);
             TextView ageProfile = findViewById(R.id.editTextAgeProfile);
+            ImageView image = findViewById(R.id.image);
 
             Call<User> callGetUserProfile = pixelRushService.getUser(username);
             callGetUserProfile.enqueue(new Callback<User>() {
@@ -56,6 +59,19 @@ public class ProfileActivity extends AppCompatActivity {
                         mailProfile.setText(userProfile.getMail());
                         usernameProfile.setText(userProfile.getUsername());
                         ageProfile.setText(String.valueOf(userProfile.getBirthDate()));
+                        String imageUrl = userProfile.getPhoto();
+
+                        // Use Picasso to load the image into the ImageView
+                        if (!imageUrl.equals("no photo")) {
+                            Picasso.get().load(imageUrl).into(image);
+                        } else {
+                            // Load default image (pika.png) from resources
+                            int defaultImageResource = R.drawable.pika; // replace with your actual image name
+                            Picasso.get().load(defaultImageResource).into(image);
+                        }
+
+
+
 
                         Log.i("FirstVersion_ObjectList", "Showing User Profile");
                         Toast.makeText(ProfileActivity.this, "Showing User Profile", Toast.LENGTH_SHORT).show();
