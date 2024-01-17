@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Badge;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -45,7 +46,12 @@ public class MyAdapterBadges extends RecyclerView.Adapter<MyAdapterBadges.ViewHo
         Badge object = badges.get(position);
 
         holder.name.setText(object.name);
-        //holder.avatar.setText("ID: "+object.avatar);
+
+        // Assuming object.avatar is the URL of the image
+        String imageUrl = object.avatar;
+
+        // Use Picasso to load the image into the ImageView
+        Picasso.get().load(imageUrl).into(holder.avatar);
     }
 
     @Override
@@ -61,7 +67,7 @@ public class MyAdapterBadges extends RecyclerView.Adapter<MyAdapterBadges.ViewHo
         public ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textViewBadgeName);
-            //  avatar = itemView.findViewById(R.id.imageBadge);
+            avatar = itemView.findViewById(R.id.imageBadge);
 
             progressBarBuy = itemView.findViewById(R.id.progressBarBuy);
         }

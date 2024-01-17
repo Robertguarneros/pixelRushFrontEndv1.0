@@ -27,23 +27,20 @@ public class BadgeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-        Toast.makeText(BadgeActivity.this, "paso por aqui", Toast.LENGTH_SHORT).show();
         ListBadge();
     }
 
     public void ListBadge () {
-        Toast.makeText(BadgeActivity.this, "llego aqui", Toast.LENGTH_SHORT).show();
+        Log.i("Calling Badge function", "Calling Badge Function");
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
         setContentView(R.layout.recycle_view_bagdes);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewB);
 
         Call<List<Badge>> callGetAllBadges = pixelRushService.getListBadge(username);
-        Toast.makeText(BadgeActivity.this, "username"+ username, Toast.LENGTH_SHORT).show();
         callGetAllBadges.enqueue(new Callback<List<Badge>>() {
             @Override
             public void onResponse(Call<List<Badge>> call, Response<List<Badge>> response) {
-                Toast.makeText(BadgeActivity.this, "entro por aqui", Toast.LENGTH_SHORT).show();
                 if (response.isSuccessful()) {
                     List<Badge> badges = response.body();
 
@@ -54,7 +51,6 @@ public class BadgeActivity extends AppCompatActivity {
                     Log.i("FirstVersion_ObjectList", "estoy aqui");
                     Toast.makeText(BadgeActivity.this, "Showing badge", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(BadgeActivity.this, "pero me voy", Toast.LENGTH_SHORT).show();
                     Log.i("FirstVersion_ObjectList", "Error: " + response.code() + " " + response.message());
                     Toast.makeText(BadgeActivity.this, "Error" + response.message(), Toast.LENGTH_SHORT).show();
                 }
@@ -62,7 +58,6 @@ public class BadgeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Badge>> call, Throwable t) {
-                Toast.makeText(BadgeActivity.this, "acabo aqui:(", Toast.LENGTH_SHORT).show();
                 Log.i("FirstVersion_ObjectList", "Error: " + t.getMessage(), t);
                 Toast.makeText(BadgeActivity.this, "Error" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }

@@ -40,18 +40,7 @@ public class MainUserPageActivity extends AppCompatActivity {
         intent.putExtra("username", message);
         startActivity(intent);
     }
-    public void goToListBadges(View view){
-        Intent intent = new Intent(MainUserPageActivity.this, BadgeActivity.class);
-        String message = username;
-        intent.putExtra("username", message);
-        startActivity(intent);
-    }
-    public void goToListMessages(View view){
-        Intent intent = new Intent(MainUserPageActivity.this, MessageActivity.class);
-        String message = username;
-        intent.putExtra("username", message);
-        startActivity(intent);
-    }
+
     public void logout(View view){
         // Get the SharedPreferences instance
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -67,6 +56,19 @@ public class MainUserPageActivity extends AppCompatActivity {
         editor.apply();
 
         Intent intent = new Intent(MainUserPageActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+    //Minimo 2
+    public void goToListBadges(View view){
+        Intent intent = new Intent(MainUserPageActivity.this, BadgeActivity.class);
+        String message = username;
+        intent.putExtra("username", message);
+        startActivity(intent);
+    }
+    public void goToListMessages(View view){
+        Intent intent = new Intent(MainUserPageActivity.this, MessageActivity.class);
+        String message = username;
+        intent.putExtra("username", message);
         startActivity(intent);
     }
     public void goToAskAQuestion(View view){
