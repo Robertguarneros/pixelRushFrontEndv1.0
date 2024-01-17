@@ -12,6 +12,8 @@ import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.OwnedObjects;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
 import java.util.List;
 
@@ -21,6 +23,7 @@ import retrofit2.Response;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<StoreObject> storeObjects;
+    private List<OwnedObjects> ownedObjects;
     private Context context;
     ProgressBar progressBarBuy;
 
@@ -41,9 +44,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         StoreObject object = storeObjects.get(position);
 
         holder.lineName.setText(object.articleName);
-        holder.lineID.setText("ID: "+object.objectID);
+        //holder.lineID.setText("ID: "+object.objectID);
         holder.lineDescription.setText(object.description);
         holder.linePrice.setText("$"+object.price);
+
+        // Check if the object is in the ownedObjects list
+        boolean isOwned = isObjectOwned(object.getObjectID());
+
+        // Disable the button if the object is owned
+        holder.buttonBuy.setEnabled(!isOwned);
+        if (isOwned){holder.buttonBuy.setText("Owned");}
         holder.buttonBuy.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +76,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                         if (response.isSuccessful()) {
                             System.out.println("Purchase Successful");
                             Toast.makeText(context, "Purchase Successful", Toast.LENGTH_SHORT).show();
-
+                            holder.buttonBuy.setText("Owned");
+                            holder.buttonBuy.setEnabled(false);
 
                         } else {
                             System.out.println("Error: " + response.code() + " " + response.message());
@@ -108,5 +119,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             buttonBuy = itemView.findViewById(R.id.buttonBuy);
             progressBarBuy = itemView.findViewById(R.id.progressBarBuy);
         }
+    }
+    // Helper method to check if an object is owned
+    private boolean isObjectOwned(String objectId) {
+        if (ownedObjects != null) {
+            for (OwnedObjects ownedObject : ownedObjects) {
+                if (ownedObject.getObjectID().equals(objectId)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public void setOwnedObjectsList(List<OwnedObjects> ownedObjects) {
+        // Set the list of owned objects
+        this.ownedObjects = ownedObjects;
+
+        // Notify the adapter that the dataset has changed
+        notifyDataSetChanged();
     }
 }

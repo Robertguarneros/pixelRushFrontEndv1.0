@@ -2,6 +2,7 @@ package com.eetac.dsa.pixelrushfrontendv10;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Badge;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.LoginCredentials;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Message;
+import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.OwnedObjects;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.RegisterCredentials;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Report;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
@@ -33,6 +34,8 @@ public interface PixelRushService {
     Call<User> getUser(@Path("username") String username);
     @PUT("addItemToUser/{username}/{objectID}")
     Call<Void> addItemToUser(@Path("username") String username, @Path("objectID") String objectID);
+    @GET("getOwnedObjects/{username}")
+    Call<List<OwnedObjects>> getOwnedObjects(@Path("username") String username);
     //Minimo 2
     @POST("question")
     Call<Void> askAQuestion(@Body Question question);
