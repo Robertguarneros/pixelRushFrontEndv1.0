@@ -117,6 +117,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginBottom="104dp"
         android:background="@drawable/denuncia"
+        android:onClick="goToSendReport"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
         app:layout_constraintStart_toStartOf="parent"

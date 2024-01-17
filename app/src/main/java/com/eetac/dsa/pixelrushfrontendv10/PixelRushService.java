@@ -3,6 +3,7 @@ import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Badge;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.LoginCredentials;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Message;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.RegisterCredentials;
+import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Report;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.User;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Question;
@@ -19,7 +20,6 @@ import retrofit2.http.Path;
 import retrofit2.http.PUT;
 
 public interface PixelRushService {
-    //String URL = "http://147.83.7.203:80/dsaApp/pixelRush/";
 
     String URL = "http://147.83.7.203:80/dsaApp/pixelRush/";
     //String URL = "http://10.0.2.2:8080/dsaApp/pixelRush/";
@@ -33,10 +33,13 @@ public interface PixelRushService {
     Call<User> getUser(@Path("username") String username);
     @PUT("addItemToUser/{username}/{objectID}")
     Call<Void> addItemToUser(@Path("username") String username, @Path("objectID") String objectID);
-    @POST("question")
-    Call<Void> askAQuestion(@Body Question question);
     @GET("getMatchPointsFromActiveMatch/{username}")
     Call<JsonObject> getMatchPointsFromActiveMatch(@Path("username")String username);
+    //Minimo 2
+    @POST("question")
+    Call<Void> askAQuestion(@Body Question question);
+    @POST("issue")
+    Call<Void> sendReport(@Body Report report);
     @GET("user/{username}/badges")
     Call<List<Badge>> getListBadge (@Path("username")String username);
     @GET("posts")

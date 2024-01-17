@@ -4,6 +4,7 @@ public class Badge {
     public String name;
     public String avatar;
 
+    public Badge(){}
     public Badge(String nameB, String avatarB) {
         this.name = nameB;
         this.avatar = avatarB;

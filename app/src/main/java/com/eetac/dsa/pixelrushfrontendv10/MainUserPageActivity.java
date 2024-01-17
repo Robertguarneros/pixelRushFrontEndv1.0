@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import kotlinx.coroutines.channels.Send;
+
 public class MainUserPageActivity extends AppCompatActivity {
 
     String username;
@@ -69,6 +71,12 @@ public class MainUserPageActivity extends AppCompatActivity {
     }
     public void goToAskAQuestion(View view){
         Intent intent = new Intent(MainUserPageActivity.this, AskAQuestionActivity.class);
+        String message = username;
+        intent.putExtra("username", message);
+        startActivity(intent);
+    }
+    public void goToSendReport(View view){
+        Intent intent = new Intent(MainUserPageActivity.this, SendReportActivity.class);
         String message = username;
         intent.putExtra("username", message);
         startActivity(intent);

@@ -26,12 +26,13 @@
         </activity>
         <activity android:name=".RegisterActivity">
         </activity>
-
         <activity android:name=".StoreActivity">
         </activity>
         <activity android:name=".ProfileActivity">
         </activity>
         <activity android:name=".AskAQuestionActivity">
+        </activity>
+        <activity android:name=".SendReportActivity">
         </activity>
         <activity android:name=".BadgeActivity">
         </activity>
