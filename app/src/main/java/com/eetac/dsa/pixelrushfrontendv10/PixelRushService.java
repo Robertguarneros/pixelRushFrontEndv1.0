@@ -1,5 +1,7 @@
 package com.eetac.dsa.pixelrushfrontendv10;
+import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Badge;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.LoginCredentials;
+import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.Message;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.RegisterCredentials;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.User;
@@ -18,7 +20,9 @@ import retrofit2.http.PUT;
 
 public interface PixelRushService {
     //String URL = "http://147.83.7.203:80/dsaApp/pixelRush/";
-    String URL = "http://10.0.2.2:8080/dsaApp/pixelRush/";
+
+    String URL = "http://147.83.7.203:80/dsaApp/pixelRush/";
+    //String URL = "http://10.0.2.2:8080/dsaApp/pixelRush/";
     @POST("registerNewUser")
     Call<Void> register(@Body RegisterCredentials credentials);
     @POST("login")
@@ -33,6 +37,11 @@ public interface PixelRushService {
     Call<Void> askAQuestion(@Body Question question);
     @GET("getMatchPointsFromActiveMatch/{username}")
     Call<JsonObject> getMatchPointsFromActiveMatch(@Path("username")String username);
+    @GET("user/{username}/badges")
+    Call<List<Badge>> getListBadge (@Path("username")String username);
+    @GET("posts")
+    Call<List<Message>> getListMessages ();
+
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(URL)

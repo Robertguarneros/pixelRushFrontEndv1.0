@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:onClick="goToListBadges">
 
     <TextView
         android:id="@+id/WelcomeUser"
@@ -41,7 +42,7 @@
         android:layout_height="55dp"
         android:layout_margin="10dp"
         android:backgroundTint="@color/Nami_Tangerine"
-        android:onClick="goToBadge"
+        android:onClick="goToListBadges"
         android:text="Badges"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -94,5 +95,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonPlay"
-        app:layout_constraintVertical_bias="0.382" />
+        app:layout_constraintVertical_bias="0.815" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="107dp"
+        android:background="@drawable/message"
+        android:onClick="goToListMessages"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlay"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="104dp"
+        android:background="@drawable/denuncia"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlay"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="104dp"
+        android:background="@drawable/question"
+        android:onClick="goToAskAQuestion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlay"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

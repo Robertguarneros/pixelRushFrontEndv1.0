@@ -6,65 +6,87 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="DD/MM/YYYY "
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:id="@+id/editTextTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="246dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Title"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextMessage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="246dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="DD/MM/YYYY "
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Question" />
+
+    <TextView
+        android:id="@+id/Question"
+        android:layout_width="267dp"
+        android:layout_height="114dp"
+        android:text="Please enter your question"
+        android:textAlignment="center"
+        android:textSize="35dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.223"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextTextMessage"
+        android:layout_width="246dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Enter your message here"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
+
     <Button
         android:id="@+id/sendQuestionBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/Nami_dark"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/Nami_Tangerine"
         android:onClick="sendQuestion"
         android:text="Send"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCancelQuestion"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMessage" />
 
     <Button
         android:id="@+id/buttonCancelQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
         android:backgroundTint="@color/Nami_dark"
         android:onClick="cancelQuestion"
-        android:text="Cancel"
+        android:text="Exit"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendQuestionBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/sendQuestionBtn"
+        app:layout_constraintVertical_bias="0.197" />
 
-    <EditText
-        android:id="@+id/editTextTextMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Enter your message here"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/sendQuestionBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
