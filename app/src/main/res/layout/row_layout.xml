@@ -6,6 +6,16 @@
     android:layout_height="300dp"
     android:padding="6dip">
 
+
+    <ImageView
+        android:id="@+id/imageStoreObject"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBuy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrice" />
+
     <TextView
         android:id="@+id/textViewArticleName"
         android:layout_width="fill_parent"
@@ -20,56 +30,36 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-
     <TextView
         android:id="@+id/textViewDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
         android:singleLine="true"
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewArticleName"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textViewID"
-        android:layout_width="300dp"
-        android:layout_height="36dip"
-
-        android:layout_alignParentEnd="true"
-        android:singleLine="true"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescription"
-        app:layout_constraintVertical_bias="0.188" />
-
-    <TextView
         android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewID" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
 
     <Button
         android:id="@+id/buttonBuy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Buy"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPrice" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBarBuy"

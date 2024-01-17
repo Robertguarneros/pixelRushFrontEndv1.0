@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.OwnedObjects;
 import com.eetac.dsa.pixelrushfrontendv10.backEndClasses.StoreObject;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -43,10 +46,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         StoreObject object = storeObjects.get(position);
 
-        holder.lineName.setText(object.articleName);
-        //holder.lineID.setText("ID: "+object.objectID);
-        holder.lineDescription.setText(object.description);
-        holder.linePrice.setText("$"+object.price);
+        holder.lineName.setText(object.getArticleName());
+        holder.lineDescription.setText(object.getDescription());
+        holder.linePrice.setText("$"+object.getPrice());
+        // Assuming image url
+        String imageUrl = object.getArticlePhoto();
+
+        // Use Picasso to load the image into the ImageView
+        Picasso.get().load(imageUrl).into(holder.imageStoreObject);
 
         // Check if the object is in the ownedObjects list
         boolean isOwned = isObjectOwned(object.getObjectID());
@@ -109,15 +116,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         TextView lineID;
         TextView linePrice;
         Button buttonBuy;
+        ImageView imageStoreObject;
 
         public ViewHolder(View itemView) {
             super(itemView);
             lineName = itemView.findViewById(R.id.textViewArticleName);
             lineDescription = itemView.findViewById(R.id.textViewDescription);
-            lineID = itemView.findViewById(R.id.textViewID);
             linePrice = itemView.findViewById(R.id.textViewPrice);
             buttonBuy = itemView.findViewById(R.id.buttonBuy);
             progressBarBuy = itemView.findViewById(R.id.progressBarBuy);
+            imageStoreObject = itemView.findViewById(R.id.imageStoreObject);
         }
     }
     // Helper method to check if an object is owned
