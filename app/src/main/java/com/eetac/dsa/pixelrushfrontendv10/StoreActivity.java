@@ -34,8 +34,8 @@ public class StoreActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-        getOwnedObjects();
         getAllObjectsFromStore();
+
         coinNumber();
     }
 
@@ -54,6 +54,7 @@ public class StoreActivity extends AppCompatActivity {
                     adapter = new MyAdapter(storeObjects, StoreActivity.this);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(StoreActivity.this));
+                    getOwnedObjects();
                     Log.i("FirstVersion_ObjectList", "Showing Store");
                     Toast.makeText(StoreActivity.this, "Showing Store", Toast.LENGTH_SHORT).show();
                 } else {
@@ -81,7 +82,7 @@ public class StoreActivity extends AppCompatActivity {
                     // Set the list of owned objects in the adapter
                     if (adapter != null) {
                         adapter.setOwnedObjectsList(objects);
-                        Log.i("Adapter set owned objects correctly ", "Adapter set owned objects");
+                        Log.i("Adapter set owned objects correctly ", "Adapter did not set owned objects");
                     }
                 } else {
                     Log.i("Adapter did not set owned objects", "Error: " + response.code() + " " + response.message());
