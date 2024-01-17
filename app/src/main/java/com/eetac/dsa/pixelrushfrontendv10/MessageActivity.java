@@ -31,8 +31,7 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.row_layout);
-        Intent intent = getIntent();
+        setContentView(R.layout.messages_list);
         MessageList();
     }
 
@@ -41,10 +40,10 @@ public class MessageActivity extends AppCompatActivity {
         PixelRushService pixelRushService = PixelRushService.retrofit.create(PixelRushService.class);//creating interface
         setContentView(R.layout.recycle_view_messages);
 
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) RecyclerView recyclerView = findViewById(R.id.recyclerViewMessages);
 
-        Call<List<Message>> callGetAllStoreObjects = pixelRushService.getListMessages();
-        callGetAllStoreObjects.enqueue(new Callback<List<Message>>() {
+        Call<List<Message>> callGetMessages = pixelRushService.getListMessages();
+        callGetMessages.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 if (response.isSuccessful()) {
@@ -54,8 +53,8 @@ public class MessageActivity extends AppCompatActivity {
                     MyAdapterMessages adapter = new MyAdapterMessages(objects, MessageActivity.this);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(MessageActivity.this));
-                    Log.i("FirstVersion_ObjectList", "Showing Store");
-                    Toast.makeText(MessageActivity.this, "Showing Store", Toast.LENGTH_SHORT).show();
+                    Log.i("FirstVersion_ObjectList", "Showing Messages");
+                    Toast.makeText(MessageActivity.this, "Showing Messages", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Log.i("FirstVersion_ObjectList", "Error: " + response.code() + " " + response.message());
@@ -71,7 +70,7 @@ public class MessageActivity extends AppCompatActivity {
         });
     }
 
-    public void exitStore(View view){
+    public void exitMessages(View view){
         finish();
     }
 }

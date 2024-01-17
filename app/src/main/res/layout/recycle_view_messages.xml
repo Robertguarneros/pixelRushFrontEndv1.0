@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewB"
+        android:id="@+id/recyclerViewMessages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
@@ -14,7 +14,7 @@
         android:id="@+id/exitButton"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
-        android:onClick="exitStore"
+        android:onClick="exitMessages"
         android:text="Exit"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

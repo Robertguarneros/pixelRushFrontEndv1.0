@@ -49,7 +49,7 @@ public class BadgeActivity extends AppCompatActivity {
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(BadgeActivity.this));
                     Log.i("FirstVersion_ObjectList", "estoy aqui");
-                    Toast.makeText(BadgeActivity.this, "Showing badge", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BadgeActivity.this, "Showing badges", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.i("FirstVersion_ObjectList", "Error: " + response.code() + " " + response.message());
                     Toast.makeText(BadgeActivity.this, "Error" + response.message(), Toast.LENGTH_SHORT).show();
@@ -64,7 +64,7 @@ public class BadgeActivity extends AppCompatActivity {
         });
     }
 
-    public void exitStore(View view){
+    public void exitBadges(View view){
         finish();
     }
 }

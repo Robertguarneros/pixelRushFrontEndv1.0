@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class MyAdapterMessages extends RecyclerView.Adapter<MyAdapterMessages.ViewHolder> {
     private List<Message> messages;
     private Context context;
-    ProgressBar progressBarBuy;
+
 
     // Constructor para recibir la lista de objetos
     public MyAdapterMessages(List<Message> messages, Context context) {
@@ -42,7 +42,6 @@ public class MyAdapterMessages extends RecyclerView.Adapter<MyAdapterMessages.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Message object = messages.get(position);
-
         holder.message.setText(object.message);
     }
 
@@ -56,7 +55,6 @@ public class MyAdapterMessages extends RecyclerView.Adapter<MyAdapterMessages.Vi
         public ViewHolder(View itemView) {
             super(itemView);
             message = itemView.findViewById(R.id.textViewMessage);
-            progressBarBuy = itemView.findViewById(R.id.progressBarBuy);
         }
     }
 }

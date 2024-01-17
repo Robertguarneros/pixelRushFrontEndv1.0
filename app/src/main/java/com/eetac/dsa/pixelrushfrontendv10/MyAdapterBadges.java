@@ -27,7 +27,6 @@ import retrofit2.Response;
 public class MyAdapterBadges extends RecyclerView.Adapter<MyAdapterBadges.ViewHolder> {
     private List<Badge> badges;
     private Context context;
-    ProgressBar progressBarBuy;
 
     // Constructor para recibir la lista de objetos
     public MyAdapterBadges(List<Badge> badges, Context context) {
@@ -68,8 +67,6 @@ public class MyAdapterBadges extends RecyclerView.Adapter<MyAdapterBadges.ViewHo
             super(itemView);
             name = itemView.findViewById(R.id.textViewBadgeName);
             avatar = itemView.findViewById(R.id.imageBadge);
-
-            progressBarBuy = itemView.findViewById(R.id.progressBarBuy);
         }
     }
 }
