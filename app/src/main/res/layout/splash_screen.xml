@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/Nami">
 
-    <TextView
-        android:id="@+id/textSplash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Welcome to PixelRush"
-        android:textColor="@color/black"
-        android:textSize="34sp" />
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="420dp"
+        android:layout_height="420dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="162dp"
+        android:layout_marginBottom="169dp"
+        android:background="@drawable/logo" />
 
 </RelativeLayout>

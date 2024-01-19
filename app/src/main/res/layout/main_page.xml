@@ -8,19 +8,20 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/WelcomeGame"
-        android:layout_width="253dp"
-        android:layout_height="124dp"
-        android:text="Welcome to PixelRush!"
-        android:textAlignment="center"
-        android:textSize="45dp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="@+id/customSignUpDialog"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintTop_toTopOf="@+id/customSignUpDialog"
+        app:layout_constraintVertical_bias="0.252"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/logIn"
@@ -29,12 +30,14 @@
         android:backgroundTint="@color/Nami_dark"
         android:onClick="loginPageOpen"
         android:text="Log In"
+        android:textSize="20dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.546" />
+        app:layout_constraintVertical_bias="0.618" />
 
     <Button
         android:id="@+id/signIn"
@@ -43,12 +46,13 @@
         android:backgroundTint="@color/Nami_Tangerine"
         android:onClick="registerPageOpen"
         android:text="Register"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638" />
+        app:layout_constraintVertical_bias="0.709" />
 
     <View
         android:id="@+id/customSignUpDialog"
