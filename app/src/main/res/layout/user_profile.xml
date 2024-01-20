@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/Nami"
+    >
 
 
     <Button
@@ -28,27 +30,13 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.21" />
 
     <TextView
-        android:id="@+id/profile"
+        android:id="@+id/editTextUsernameProfile"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Your profile"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/editTextNameProfile"
-        android:layout_width="253dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="268dp"
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +47,7 @@
         android:id="@+id/editTextSurnameProfile"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="164dp"
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,18 +58,7 @@
         android:id="@+id/editTextMailProfile"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
-
-    <TextView
-        android:id="@+id/editTextUsernameProfile"
-        android:layout_width="253dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="216dp"
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +69,31 @@
         android:id="@+id/editTextAgeProfile"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="316dp"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <TextView
+        android:id="@+id/profile"
+        android:layout_width="253dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Your profile"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
+
+    <TextView
+        android:id="@+id/editTextNameProfile"
+        android:layout_width="253dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
