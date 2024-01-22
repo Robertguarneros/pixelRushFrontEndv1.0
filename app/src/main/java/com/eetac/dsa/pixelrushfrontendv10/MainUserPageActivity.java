@@ -1,5 +1,6 @@
 package com.eetac.dsa.pixelrushfrontendv10;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import kotlinx.coroutines.channels.Send;
 
 public class MainUserPageActivity extends AppCompatActivity {
 
@@ -59,10 +59,9 @@ public class MainUserPageActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void play(View view){
-        Intent intent = new Intent(MainUserPageActivity.this, StoreActivity.class);
-        String message = username;
-        intent.putExtra("username", message);
-        startActivity(intent);
+        Intent i = new Intent();
+        i.setComponent(new ComponentName("com.eetac.dsa.pixelrushfrontendv10", "com.PixelRush.Group1"));
+        startActivity(i);
     }
 
     //Minimo 2
